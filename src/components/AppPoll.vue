@@ -60,7 +60,7 @@
         </div>
         <!-- Done voting female contestants ? -->
         <div v-if="fVoteCount < 1" class="thank-you">
-            <h1>Thank you for voting</h1>
+            <h1>Thank you for voting Mr. And Ms. VetMed (People's choice) 2019. Share the poll with your friends using the buttons below.</h1>
         </div>
     </div>
 </template>
@@ -84,22 +84,101 @@ export default {
             maleContestants: [
                 {
                     id: 1,
-                    name: "Leonardo Da Fappio"
+                    name: "Cris John Mendoza",
+                    dp: null
                 },
                 {
                     id: 2,
-                    name: "Davinci Sisti"
+                    name: "Lorenzo Credo",
+                    dp: null
+                },
+                {
+                    id: 3,
+                    name: "Joshua Velasco Badong",
+                    dp:null
+                },
+                {
+                    id: 4,
+                    name: "Michael Franco Bertumen",
+                    dp: null
+                },
+                {
+                    id: 5,
+                    name: "Elmo Barra",
+                    dp:null
+                },
+                {
+                    id: 6,
+                    name: "John Paul Reforsado",
+                    dp:null
+                },
+                {
+                    id: 7,
+                    name: "Julius Oliver Llana",
+                    dp:null
+                },
+                {
+                    id: 8,
+                    name: "Jonas Fernandez",
+                    dp:null
+                },
+                {
+                    id: 9,
+                    name: "Dan Miguel Legaspi",
+                    dp:null
                 }
             ],
             femaleContestants: [
                 {
                     id: 1,
-                    name: "Liza rd"
+                    name: "Joanna Peralta",
+                    dp: null
                 },
                 {
                     id: 2,
-                    name: "Catreeeen Biy"
-                }
+                    name: "Shiela Payno",
+                    dp: null
+                },
+                {
+                    id: 3,
+                    name: "Alyssa Ashley Lumacad",
+                    dp: null
+                },
+                {
+                    id: 4,
+                    name: "Matea Ela Noche",
+                    dp: null
+                },
+                {
+                    id: 5,
+                    name: "Merlyn Castelo",
+                    dp: null
+                },
+                {
+                    id: 6,
+                    name: "Joy Laurel Buena",
+                    dp: null
+                },
+                {
+                    id: 7,
+                    name: "Angel Dalanon",
+                    dp: null
+                },
+                {
+                    id: 8,
+                    name: "Donna Carmela Hapal",
+                    dp: null
+                },
+                {
+                    id: 9,
+                    name: "Shiena Aguilar",
+                    dp: null
+                },
+                {
+                    id: 10,
+                    name: "Maricar Zoilo",
+                    dp: null
+                },
             ],
             voted: []
         }
