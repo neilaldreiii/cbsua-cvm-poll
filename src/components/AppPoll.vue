@@ -9,8 +9,8 @@
                     </li>
                 </ul>
             </div>
+            <h1>Male Contestants</h1>
             <div class="contestants">
-                <h1>Male Contestants</h1>
                 <div class="contestant" v-for="mc in maleContestants" :key="mc.id">
                     <div class="display-picture">
                         <img :src="mc.dp" alt="">
@@ -23,7 +23,7 @@
                             <button @click.once="voteM" :value="mc.id">Vote</button>
                         </div>
                         <div v-else>
-                            <button disabled>Out of vote</button>
+                            <button disabled class="disabled">Out of vote</button>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="contestants">
+            <div v-if="!fVoteCount < 1" class="contestants">
                 <h1>Female Contestants</h1>
                 <div class="contestant" v-for="fc in femaleContestants" :key="fc.id">
                     <div class="display-picture"></div>
@@ -54,14 +54,14 @@
                             <button @click.once="voteF" :value="fc.id">Vote</button>
                         </div>
                         <div v-else>
-                            <button disabled>Out of vote</button>
+                            <button disabled class="disabled">Out of vote</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Done voting female contestants ? -->
-        <div v-if="fVoteCount < 1" class="thank-you">
+        <div v-if="fVoteCount < 1">
             <h1>Thank you for voting Mr. And Ms. VetMed (People's choice) 2019. Share the poll with your friends using the buttons below.</h1>
         </div>
     </div>
@@ -92,42 +92,42 @@ export default {
                 {
                     id: 2,
                     name: "Lorenzo Credo",
-                    dp: null
+                    dp: require('@/assets/images/LorenzoCredo.jpg')
                 },
                 {
                     id: 3,
                     name: "Joshua Velasco Badong",
-                    dp:null
+                    dp:require('@/assets/images/JoshuaVelascoBadong.jpg')
                 },
                 {
                     id: 4,
                     name: "Michael Franco Bertumen",
-                    dp: null
+                    dp: require('@/assets/images/MichaelFrancoBertumen.jpg')
                 },
                 {
                     id: 5,
                     name: "Elmo Barra",
-                    dp:null
+                    dp:require('@/assets/images/ElmoBarra.jpg')
                 },
                 {
                     id: 6,
                     name: "John Paul Reforsado",
-                    dp:null
+                    dp:require('@/assets/images/JohnPaulReforsado.jpg')
                 },
                 {
                     id: 7,
                     name: "Julius Oliver Llana",
-                    dp:null
+                    dp:require('@/assets/images/JuliusOliverLlana.jpg')
                 },
                 {
                     id: 8,
                     name: "Jonas Fernandez",
-                    dp:null
+                    dp:require('@/assets/images/JonasFernandez.jpg')
                 },
                 {
                     id: 9,
                     name: "Dan Miguel Legaspi",
-                    dp:null
+                    dp:require('@/assets/images/DanMiguelLegaspi.jpg')
                 }
             ],
             femaleContestants: [

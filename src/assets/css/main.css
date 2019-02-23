@@ -1,10 +1,61 @@
-.display-picture {
-    height: 475px;
-    width: 375px;
-    padding: 5px;
-    border: 1px solid;
+/* Voting success message*/
+.voted {
+    display: block;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    padding: 20px;
+    background: rgb(0, 247, 164);
+    color: #FFF;
+    border-radius: 3px;
+    box-shadow: 0 0 12px #343434;
+    z-index: 1;
+}
+.voted ul {
+    list-style: none;
+    font-size: 16pt;
+    margin: 0;
+    padding: 0;
+}
+.voted p {
+    margin: 0;
+}
+/* Contestants */
+.contestants {
+    width: 90%;
+    margin: auto;
+}
+.contestant {
+    background: #FFF;
+    width: 475px;
+    border-radius: 6px;
+    box-shadow: 0 0 12px #8b8b8b;
+    overflow: hidden;
+    margin: 34px auto;
 }
 .display-picture img {
     width: 100%;
     height: 100%;
+}
+.info {
+    text-align: center;
+}
+.controls button, .mc-vote-done button {
+    display: block;
+    margin: 12px auto;
+    outline: none;
+    border: none;
+    background: #0066FF;
+    padding: 5px 15px;
+    color: #FFF;
+    border-radius: 3px;
+    box-shadow: 0 0 8px #ccc;
+    font-size: 18px;
+}
+.controls button:hover {
+    cursor: pointer;
+    background: rgb(0, 84, 209);
+}
+.controls button.disabled {
+    background: #c0c0c0;
 }
