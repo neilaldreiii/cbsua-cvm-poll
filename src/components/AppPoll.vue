@@ -12,7 +12,9 @@
             <div class="contestants">
                 <h1>Male Contestants</h1>
                 <div class="contestant" v-for="mc in maleContestants" :key="mc.id">
-                    <div class="display-picture"></div>
+                    <div class="display-picture">
+                        <img :src="mc.dp" alt="">
+                    </div>
                     <div class="info">
                         <h1>{{ mc.name }}</h1>
                     </div>
@@ -85,7 +87,7 @@ export default {
                 {
                     id: 1,
                     name: "Cris John Mendoza",
-                    dp: null
+                    dp: require('@/assets/images/CrisJohnMendoza.jpg')
                 },
                 {
                     id: 2,

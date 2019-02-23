@@ -4,5 +4,9 @@
   </div>
 </template>
 
-<style>
-</style>
+<script>
+
+require("@/assets/css/default.css");
+require("@/assets/css/main.css");
+
+</script>

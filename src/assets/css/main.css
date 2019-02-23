@@ -1,0 +1,10 @@
+.display-picture {
+    height: 475px;
+    width: 375px;
+    padding: 5px;
+    border: 1px solid;
+}
+.display-picture img {
+    width: 100%;
+    height: 100%;
+}
