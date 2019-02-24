@@ -5,7 +5,7 @@
     <div class="description">
       <ul>
         <lh>
-          <h4>Rules</h4>
+          <h1>Rules</h1>
         </lh>
         <li>
           Voters must connect to facebook before proceeding.
@@ -45,3 +45,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.description {
+  width: 50%;
+  margin: 5em auto;
+  height: 100vh;
+}
+.description ul {
+  margin: auto;
+}
+.description ul li {
+  padding: 10px;
+  margin:10px;
+}
+</style>
