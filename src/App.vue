@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="!closed">
     <app-signin></app-signin>
     <router-view />
     <div class="description">
       <ul>
-        <lh>
+        <li style="list-style: none;">
           <h1>Rules</h1>
-        </lh>
+        </li>
         <li>
           Voters must connect to facebook before proceeding.
         </li>
@@ -39,14 +39,44 @@ import AppFooter from "@/components/AppFooter.vue";
 
 export default {
   name: "app",
+  data() {
+    return {
+      closed: false,
+    }
+  },
   components: {
     "app-signin": SignIn,
     "app-footer": AppFooter
+  },
+  created() {
+
+    this.isDeadLine();
+    
+  },
+  methods: {
+    
+    isDeadLine() {
+
+      let today = new Date();
+      let deadline = new Date("Feb 28, 2019 12:00:00");
+
+      if(deadline <= today) {
+
+        this.closed = true;
+
+      } else {
+
+        this.closed = false;
+
+      }
+    }
+
   }
 }
 </script>
 
 <style scoped>
+
 .description {
   width: 50%;
   margin: 5em auto;
@@ -59,4 +89,5 @@ export default {
   padding: 10px;
   margin:10px;
 }
+
 </style>
