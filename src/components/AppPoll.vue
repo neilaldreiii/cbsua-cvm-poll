@@ -94,10 +94,6 @@
             </h1>
         </div>
 
-        <!-- ADMIN JL IS HEEEEEEEEEEEEEEEERE FOOLS -->
-        <div class="admin-view">
-            
-        </div>
     </div>
 </template>
 
@@ -128,103 +124,121 @@ export default {
                 {
                     id: 1,
                     name: "Cris John Mendoza",
-                    dp: require('@/assets/images/CrisJohnMendoza.jpg')
+                    dp: require('@/assets/images/CrisJohnMendoza.jpg'),
+                    category: "mr"
                 },
                 {
                     id: 2,
                     name: "Lorenzo Credo",
-                    dp: require('@/assets/images/LorenzoCredo.jpg')
+                    dp: require('@/assets/images/LorenzoCredo.jpg'),
+                    category: "mr"
                 },
                 {
                     id: 3,
                     name: "Joshua Velasco Badong",
-                    dp:require('@/assets/images/JoshuaVelascoBadong.jpg')
+                    dp:require('@/assets/images/JoshuaVelascoBadong.jpg'),
+                    category: "mr"
                 },
                 {
                     id: 4,
                     name: "Michael Franco Bertumen",
-                    dp: require('@/assets/images/MichaelFrancoBertumen.jpg')
+                    dp: require('@/assets/images/MichaelFrancoBertumen.jpg'),
+                    category: "mr"
                 },
                 {
                     id: 5,
                     name: "Elmo Barra",
-                    dp:require('@/assets/images/ElmoBarra.jpg')
+                    dp:require('@/assets/images/ElmoBarra.jpg'),
+                    category: "mr"
                 },
                 {
                     id: 6,
                     name: "John Paul Reforsado",
-                    dp:require('@/assets/images/JohnPaulReforsado.jpg')
+                    dp:require('@/assets/images/JohnPaulReforsado.jpg'),
+                    category: "mr"
                 },
                 {
                     id: 7,
                     name: "Julius Oliver Llana",
-                    dp:require('@/assets/images/JuliusOliverLlana.jpg')
+                    dp:require('@/assets/images/JuliusOliverLlana.jpg'),
+                    category: "mr"
                 },
                 {
                     id: 8,
                     name: "Jonas Fernandez",
-                    dp:require('@/assets/images/JonasFernandez.jpg')
+                    dp:require('@/assets/images/JonasFernandez.jpg'),
+                    category: "mr"
                 },
                 {
                     id: 9,
                     name: "Dan Miguel Legaspi",
-                    dp:require('@/assets/images/DanMiguelLegaspi.jpg')
+                    dp:require('@/assets/images/DanMiguelLegaspi.jpg'),
+                    category: "mr"
                 }
             ],
             femaleContestants: [
                 {
                     id: 11,
                     name: "Joanna Peralta",
-                    dp: null
+                    dp: null,
+                    category: "ms"
                 },
                 {
                     id: 12,
                     name: "Shiela Payno",
-                    dp: null
+                    dp: null,
+                    category: "ms"
                 },
                 {
                     id: 13,
                     name: "Alyssa Ashley Lumacad",
-                    dp: null
+                    dp: null,
+                    category: "ms"
                 },
                 {
                     id: 14,
                     name: "Matea Ela Noche",
-                    dp: null
+                    dp: null,
+                    category: "ms"
                 },
                 {
                     id: 15,
                     name: "Merlyn Castelo",
-                    dp: null
+                    dp: null,
+                    category: "ms"
                 },
                 {
                     id: 16,
                     name: "Joy Laurel Buena",
-                    dp: null
+                    dp: null,
+                    category: "ms"
                 },
                 {
                     id: 17,
                     name: "Angel Dalanon",
-                    dp: null
+                    dp: null,
+                    category: "ms"
                 },
                 {
                     id: 18,
                     name: "Donna Carmela Hapal",
-                    dp: null
+                    dp: null,
+                    category: "ms"
                 },
                 {
                     id: 19,
                     name: "Shiena Aguilar",
-                    dp: null
+                    dp: null,
+                    category: "ms"
                 },
                 {
                     id: 20,
                     name: "Maricar Zoilo",
-                    dp: null
+                    dp: null,
+                    category: "ms"
                 },
             ],
             voted: [], //on success message
-            votes: [], //votes sent by users
             voter: [], //current user logged in
         }
     },
@@ -271,34 +285,6 @@ export default {
 
             }
         })
-
-        /*
-         * Get all votes
-         */
-
-        db.collection("voters")
-        .get()
-        .then(
-            querySnapshot => {
-             
-                querySnapshot.forEach(doc => {
-                    
-                    const data = {
-
-                        voteId: doc.id,
-                        voterId: doc.data().voterId,
-                        voterName: doc.data().voterName,
-                        votedForId: doc.data().votedForId,
-                        votedFor: doc.data().votedFor,
-                        hasVoted: doc.data().hasVoted
-
-                    }
-
-                    this.votes.push(data);
-                    
-                })
-            }
-        )
     },
     methods: {
         voteM(e) {
@@ -328,6 +314,7 @@ export default {
 
                     voteForId = m.id;
                     voteFor = m.name;
+                    category = m.category;
 
                 }
             }
@@ -342,6 +329,7 @@ export default {
                 voterName: this.voter.displayName,
                 votedForId: voteForId,
                 votedFor: voteFor,
+                category: category,
                 hasVoted: false,
 
             })
@@ -386,6 +374,7 @@ export default {
 
                     voteForId = f.id;
                     voteFor = f.name;
+                    category = f.category;
 
                 }
             }
@@ -412,6 +401,7 @@ export default {
                 voterName: this.voter.displayName,
                 votedForId: voteForId,
                 votedFor: voteFor,
+                category: category,
                 hasVoted: finishedVoting,
 
             })

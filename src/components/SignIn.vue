@@ -21,13 +21,34 @@
                     <span><i class="fab fa-facebook-f"></i></span>
                     Sign Out
                 </button>
+                
+                <!-- ONLY FOR ADMIN JL -->
+                <button v-if="isAdmin" @click="admin = !admin" class="admin-button">
+                    <i class="fas fa-poll"></i>
+                    Poll Status
+                </button>
+
+                <!-- ADMIN JL IS HEEEEEEEEEEEEEEEERE FOOLS -->
+                <div class="admin-view-container" v-if="admin">
+                    <div class="results">
+                        <div class="close">
+                            <a @click.prevent="admin = !admin">&times;</a>
+                        </div>
+                        <div class="status">
+                            <p>Total Votes: {{ votes.length }} </p>
+                        </div>
+                        <div v-for="vote in votes" :key="vote.id" class="result">
+                            {{ vote.votedFor }}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import firebaseInit from '@/firebase/firebaseInit';
+import db from '@/firebase/firebaseInit';
 import firebase from 'firebase';
 
 export default {
@@ -36,17 +57,33 @@ export default {
         return {
 
             isSignedIn: false,
-            displayName: null
+            displayName: null,
+            admin: false,
+            isAdmin: false,
+            votes: [], //votes sent by users
 
         }
     },
     created() {
+
+        this.getResults();
 
         firebase.auth().onAuthStateChanged(user => {
             if(user) {
 
                 this.displayName = user.displayName;
                 this.isSignedIn = true;
+                
+                if (user.uid == "kHsW28iNsEWvchwklvEGYY9xArv2" || 
+                    user.uid == "oM4Dne0Pt7cflS6bCB8ryqhaUOz1") {
+
+                        this.isAdmin = true;
+
+                } else {
+                    
+                    this.isAdmin = false;
+
+                }
                 
             } else {
 
@@ -55,6 +92,8 @@ export default {
 
             }
         })
+        
+        this.counter();
 
     },
     methods: {
@@ -82,6 +121,47 @@ export default {
                 this.isSignedIn = false;
             })
 
+        },
+        getResults() {
+
+            /*
+         * Get all votes
+         */
+
+        db.collection("voters")
+        .get()
+        .then(
+            querySnapshot => {
+             
+                querySnapshot.forEach(doc => {
+                    
+                    const data = {
+
+                        voteId: doc.id,
+                        voterId: doc.data().voterId,
+                        voterName: doc.data().voterName,
+                        votedForId: doc.data().votedForId,
+                        votedFor: doc.data().votedFor,
+                        hasVoted: doc.data().hasVoted
+
+                    }
+
+                    this.votes.push(data);
+                    
+                })
+            })
+            .catch(
+
+                error => console.log(error.message)
+
+            )
+
+        },
+        /*
+         * Counting votes
+         */
+        counter() {
+            
         }
     }
 }
