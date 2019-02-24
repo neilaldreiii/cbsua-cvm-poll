@@ -33,11 +33,13 @@
                 </div>
             </div>
         </div>
+
         <!-- Done voting male contestants ?  -->
-        <div class="mc-vote-done" v-if="mVoteCount < 1">
+        <div class="mc-vote-done" v-if="mVoteCount < 1" v-show="!afterVoting">
             <h1>Next up: Ms. VetMed Candidates</h1>
-            <button @click="afterVoting = true" v-if="!afterVoting">Next</button>
+            <button @click="afterVoting = true">Next</button>
         </div>
+
         <div v-if="afterVoting" class="female-contestants-poll">
             <h1 style="text-align:center;">
                 Vote Remaining: 
@@ -79,7 +81,7 @@
 
 <script>
 
-import firebaseInit from '@/firebase/firebaseInit';
+import db from '@/firebase/firebaseInit';
 import firebase from "firebase";
 
 export default {
@@ -98,6 +100,8 @@ export default {
             fVoteCount: 2,
             afterVoting: false,
             isSignedIn: false,
+            hasVoted: false,
+            loggedId: null,
             maleContestants: [
                 {
                     id: 1,
@@ -197,7 +201,9 @@ export default {
                     dp: null
                 },
             ],
-            voted: []
+            voted: [],
+            votes: [],
+            voter: [],
         }
     },
     created() {
@@ -212,46 +218,160 @@ export default {
                  * Depending on the user's state to display
                  * the candidates  
                  */
+
                 this.isSignedIn = true;
+                this.voter = user;
 
             } else {
 
                 this.isSignedIn = false;
 
             }
-        });
+        })
 
+        db.collection("voters")
+        .get()
+        .then(
+            querySnapshot => {
+             
+                querySnapshot.forEach(doc => {
+                    
+                    
+
+                })
+            }
+        )
     },
     methods: {
         voteM(e) {
+            
+            /*
+             * Decrease vote count after voting
+             */
 
             this.mVoteCount--;
-            let targetContestant = e.target.value;
-            this.voted = [];
+            var targetContestant = e.target.value;
+            /*
+            * Get details
+            */
+            let voteForId = "";
+            let voteFor = "";
+
+            this.voted = []; // show alert
+
+            /*
+             * Get the contestant's name
+             * Then push a mini alert
+             */
 
             for(let m of this.maleContestants) {
                 
                 if(m.id == targetContestant) {
 
-                    this.voted.push("You voted for " + m.name);
+                    voteForId = m.id;
+                    voteFor = m.name;
 
                 }
             }
+
+            console.log(voteForId, voteFor);
+            console.log(this.voter.displayName, this.voter.uid);
+
+            /*
+             * Send data to the cloud firestore  
+             */ 
+
+            db.collection("voters").add({
+                
+                voterId: this.voter.uid,
+                voterName: this.voter.displayName,
+                votedForId: voteForId,
+                votedFor: voteFor,
+                hasVoted: false,
+
+            })
+            .then(
+
+                docRef => {
+
+                    this.voted.push("You voted for " + voteFor);
+
+            })
+            .catch(
+
+                error => console.log(error)
+
+            )
+
         },
         voteF(e) {
 
+            /*
+             * Decrease vote count after voting
+             */
+
             this.fVoteCount--;
             let targetContestant = e.target.value;
-            this.voted = [];
+            this.voted = []; //show alert
+
+            /*
+            * Get details
+            */
+            let voteForId = "";
+            let voteFor = "";
+
+            /*
+             * Get the contestant's name
+             * Then push a mini alert
+             */
 
             for(let f of this.femaleContestants) {
 
                 if(f.id == targetContestant) {
 
-                    this.voted.push("You voted for " + f.name);
+                    voteForId = f.id;
+                    voteFor = f.name;
 
                 }
             }
+
+            /*
+             * Check to see if the user has used their final vote
+             * set hasVoted to true
+             */
+            let finishedVoting = false;
+
+            if(this.fVoteCount == 0) {
+                
+                finishedVoting = true;
+
+            }
+
+            /*
+             * Send data to the cloud firestore  
+             */ 
+
+            db.collection("voters").add({
+                
+                voterId: this.voter.uid,
+                voterName: this.voter.displayName,
+                votedForId: voteForId,
+                votedFor: voteFor,
+                hasVoted: finishedVoting,
+
+            })
+            .then(
+
+                docRef => {
+
+                    this.voted.push("You voted for " + voteFor);
+
+            })
+            .catch(
+
+                error => console.log(error)
+
+            )
 
         }
     }
