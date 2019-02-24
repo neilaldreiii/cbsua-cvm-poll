@@ -34,11 +34,23 @@
                         <div class="close">
                             <a @click.prevent="admin = !admin">&times;</a>
                         </div>
-                        <div class="status">
-                            <p>Total Votes: {{ votes.length }} </p>
+                        <div class="mr-vetmed">
+                            <!-- Mr VetMed -->
+                            <div class="status">
+                                <p>Total Votes for Mr VetMed: {{ votesM.length }} </p>
+                            </div>
+                            <div v-for="vote in votesM" :key="vote.id" class="result">
+                                {{ vote.votedFor }}
+                            </div>
                         </div>
-                        <div v-for="vote in votes" :key="vote.id" class="result">
-                            {{ vote.votedFor }}
+                        <div class="ms-vetmed">
+                            <!-- Ms VetMed -->
+                            <div class="status">
+                                <p>Total Votes for ms VetMed: {{ votesF.length }} </p>
+                            </div>
+                            <div class="result" v-for="vote in votesF" :key="vote.id">
+                                {{ vote.votedFor }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,13 +72,17 @@ export default {
             displayName: null,
             admin: false,
             isAdmin: false,
-            votes: [], //votes sent by users
+            votesM: [], //votes sent by users
+            votesF: [],
+            votesFCount: [], //votes sent by users
+            countsMCount: []
 
         }
     },
     created() {
 
-        this.getResults();
+        this.getResultsM();
+        this.getResultsF();
 
         firebase.auth().onAuthStateChanged(user => {
             if(user) {
@@ -122,13 +138,13 @@ export default {
             })
 
         },
-        getResults() {
+        getResultsM() {
 
             /*
          * Get all votes
          */
 
-        db.collection("voters")
+        db.collection("voters").where("category", "==", "mr")
         .get()
         .then(
             querySnapshot => {
@@ -142,11 +158,12 @@ export default {
                         voterName: doc.data().voterName,
                         votedForId: doc.data().votedForId,
                         votedFor: doc.data().votedFor,
+                        category: doc.data().category,
                         hasVoted: doc.data().hasVoted
 
                     }
 
-                    this.votes.push(data);
+                    this.votesM.push(data);
                     
                 })
             })
@@ -157,11 +174,45 @@ export default {
             )
 
         },
+        getResultsF() {
+
+        /*
+        * Get all votes
+        */
+
+        db.collection("voters").where("category", "==", "ms")
+        .get()
+        .then(
+            querySnapshot => {
+             
+                querySnapshot.forEach(doc => {
+                    
+                    const data = {
+
+                        voteId: doc.id,
+                        voterId: doc.data().voterId,
+                        voterName: doc.data().voterName,
+                        votedForId: doc.data().votedForId,
+                        votedFor: doc.data().votedFor,
+                        category: doc.data().category,
+                        hasVoted: doc.data().hasVoted
+
+                    }
+
+                    this.votesF.push(data);
+                    
+                })
+            })
+            .catch(
+
+                error => console.log(error.message)
+
+            )
+        },
         /*
          * Counting votes
          */
         counter() {
-            
         }
     }
 }

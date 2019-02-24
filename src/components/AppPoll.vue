@@ -300,6 +300,7 @@ export default {
             */
             let voteForId = "";
             let voteFor = "";
+            let category = "";
 
             this.voted = []; // show alert
 
@@ -362,6 +363,7 @@ export default {
             */
             let voteForId = "";
             let voteFor = "";
+            let category = "";
 
             /*
              * Get the contestant's name
