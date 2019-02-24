@@ -7,10 +7,11 @@
 <script>
 import Poll from "@/components/AppPoll.vue";
 
+
 export default {
   name: "home",
   components: {
-    "app-poll": Poll
+    "app-poll": Poll,
   }
 };
 </script>

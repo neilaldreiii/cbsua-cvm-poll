@@ -131,3 +131,18 @@
     cursor: pointer;
     background: rgb(53, 71, 112);
 }
+/* Footer */
+footer {
+    padding: 20px;
+    margin: auto;
+    margin-bottom: 0;
+    background: #FFF;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+}
+.footer-links {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
