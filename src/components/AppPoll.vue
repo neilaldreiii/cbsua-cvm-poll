@@ -205,7 +205,19 @@ export default {
         firebase.auth().onAuthStateChanged(user => {
 
             if(user) {
+                
+                /*
+                 * Check to see if the user is logged in 
+                 * then set the truethiness or falsiness
+                 * Depending on the user's state to display
+                 * the candidates  
+                 */
                 this.isSignedIn = true;
+
+            } else {
+
+                this.isSignedIn = false;
+
             }
         });
 
