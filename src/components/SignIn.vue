@@ -5,8 +5,11 @@
                 <h1>Welcome to CBSUA CVM Poll.</h1>
             </div>
             <div class="nav-controls">
-                <h3>To start voting, please log in using your facebook.</h3>
-                <button @click="fbSignIn">Sign In with Facebook</button>
+                <h3>To start voting, please log in with your facebook.</h3>
+                <button @click="fbSignIn">
+                    <span><i class="fab fa-facebook-f"></i></span>
+                    Sign In with Facebook
+                </button>
             </div>
         </div>
         <div v-else class="nav-intro">
@@ -15,7 +18,10 @@
             </div>
             <div class="nav-controls">
                 <h3>You can now start voting. </h3>
-                <button @click="fbSignOut">SignOut</button>
+                <button @click="fbSignOut">
+                    <span><i class="fab fa-facebook-f"></i></span>
+                    Sign Out
+                </button>
             </div>
         </div>
     </div>

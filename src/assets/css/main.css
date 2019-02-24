@@ -118,4 +118,16 @@
 .nav-controls button {
     display: block;
     margin: 10px auto;
+    outline: none;
+    border: none;
+    background: #3C5A99;
+    border-radius: 50px;
+    padding: 15px 25px;
+    color: #FFF;
+    font-size: 13pt;
+    transition: background 0.5s;
+}
+.nav-controls button:hover {
+    cursor: pointer;
+    background: rgb(53, 71, 112);
 }
