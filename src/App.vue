@@ -74,20 +74,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-.description {
-  width: 50%;
-  margin: 5em auto;
-  height: 100vh;
-}
-.description ul {
-  margin: auto;
-}
-.description ul li {
-  padding: 10px;
-  margin:10px;
-}
-
-</style>
