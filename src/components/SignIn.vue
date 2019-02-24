@@ -17,7 +17,6 @@
                 <h1>Welcome {{ displayName }}</h1>
             </div>
             <div class="nav-controls">
-                <h3>You can now start voting. </h3>
                 <button @click="fbSignOut">
                     <span><i class="fab fa-facebook-f"></i></span>
                     Sign Out

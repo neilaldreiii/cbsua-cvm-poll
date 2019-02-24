@@ -93,6 +93,11 @@
                 <span style="color: red; display: block;">You have used all your votes</span>
             </h1>
         </div>
+
+        <!-- ADMIN JL IS HEEEEEEEEEEEEEEEERE FOOLS -->
+        <div class="admin-view">
+            
+        </div>
     </div>
 </template>
 
@@ -168,52 +173,52 @@ export default {
             ],
             femaleContestants: [
                 {
-                    id: 1,
+                    id: 11,
                     name: "Joanna Peralta",
                     dp: null
                 },
                 {
-                    id: 2,
+                    id: 12,
                     name: "Shiela Payno",
                     dp: null
                 },
                 {
-                    id: 3,
+                    id: 13,
                     name: "Alyssa Ashley Lumacad",
                     dp: null
                 },
                 {
-                    id: 4,
+                    id: 14,
                     name: "Matea Ela Noche",
                     dp: null
                 },
                 {
-                    id: 5,
+                    id: 15,
                     name: "Merlyn Castelo",
                     dp: null
                 },
                 {
-                    id: 6,
+                    id: 16,
                     name: "Joy Laurel Buena",
                     dp: null
                 },
                 {
-                    id: 7,
+                    id: 17,
                     name: "Angel Dalanon",
                     dp: null
                 },
                 {
-                    id: 8,
+                    id: 18,
                     name: "Donna Carmela Hapal",
                     dp: null
                 },
                 {
-                    id: 9,
+                    id: 19,
                     name: "Shiena Aguilar",
                     dp: null
                 },
                 {
-                    id: 10,
+                    id: 20,
                     name: "Maricar Zoilo",
                     dp: null
                 },
