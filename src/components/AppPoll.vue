@@ -1,7 +1,9 @@
 <template>
     <div v-if="isSignedIn" class="container">
         <div class="male-contestants-poll" v-if="!afterVoting">
-            <h1>Vote Remaining: {{ mVoteCount }}</h1>
+            <h1 style="text-align: center;">
+                Vote Remaining: <span style="color: #0066FF;">{{ mVoteCount }}</span>
+            </h1>
             <div v-if="voted.length" class="voted">
                 <ul>
                     <li v-for="v in voted" :key="v.index">
@@ -9,7 +11,9 @@
                     </li>
                 </ul>
             </div>
-            <h1>Male Contestants</h1>
+            <h1 style="text-align:center;">
+                Mr. VetMed(People's Choice)
+            </h1>
             <div class="contestants">
                 <div class="contestant" v-for="mc in maleContestants" :key="mc.id">
                     <div class="display-picture">
@@ -31,10 +35,14 @@
         </div>
         <!-- Done voting male contestants ?  -->
         <div class="mc-vote-done" v-if="mVoteCount < 1">
+            <h1>Next up: Ms. VetMed Candidates</h1>
             <button @click="afterVoting = true" v-if="!afterVoting">Next</button>
         </div>
         <div v-if="afterVoting" class="female-contestants-poll">
-            <h1>Vote Remaining: {{ fVoteCount }}</h1>
+            <h1 style="text-align:center;">
+                Vote Remaining: 
+                <span style="color: #0066FF;">{{ fVoteCount }}</span>
+            </h1>
             <div v-if="voted.length" class="voted">
                 <ul>
                     <li v-for="v in voted" :key="v.index">
@@ -43,7 +51,9 @@
                 </ul>
             </div>
             <div v-if="!fVoteCount < 1" class="contestants">
-                <h1>Female Contestants</h1>
+                <h1 style="text-align:center;">
+                    Ms. VetMed(People's Choice)
+                </h1>
                 <div class="contestant" v-for="fc in femaleContestants" :key="fc.id">
                     <div class="display-picture"></div>
                     <div class="info">
@@ -68,6 +78,7 @@
 </template>
 
 <script>
+
 import firebaseInit from '@/firebase/firebaseInit';
 import firebase from "firebase";
 
@@ -197,6 +208,7 @@ export default {
                 this.isSignedIn = true;
             }
         });
+
     },
     methods: {
         voteM(e) {
@@ -228,11 +240,8 @@ export default {
 
                 }
             }
+
         }
     }
 }
 </script>
-
-<style>
-
-</style>

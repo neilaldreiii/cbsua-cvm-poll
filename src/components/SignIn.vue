@@ -1,14 +1,22 @@
 <template>
-    <div class="container">
-        <div v-if="!isSignedIn">
-            <h1>Welcome to CBSUA CVM Poll.</h1>
-            <h3>To start please log in using your facebook.</h3>
-            <button @click="fbSignIn">Sign In with Facebook</button>
+    <div class="nav-signIn">
+        <div v-if="!isSignedIn" class="nav-intro">
+            <div class="short-intro">
+                <h1>Welcome to CBSUA CVM Poll.</h1>
+            </div>
+            <div class="nav-controls">
+                <h3>To start voting, please log in using your facebook.</h3>
+                <button @click="fbSignIn">Sign In with Facebook</button>
+            </div>
         </div>
-        <div v-else>
-            <h1>Welcome {{ displayName }}</h1>
-            <h2>You can now start voting. </h2>
-            <button @click="fbSignOut">SignOut</button>
+        <div v-else class="nav-intro">
+            <div class="short-intro">
+                <h1>Welcome {{ displayName }}</h1>
+            </div>
+            <div class="nav-controls">
+                <h3>You can now start voting. </h3>
+                <button @click="fbSignOut">SignOut</button>
+            </div>
         </div>
     </div>
 </template>
@@ -24,7 +32,7 @@ export default {
 
             isSignedIn: false,
             displayName: null
-            
+
         }
     },
     created() {
