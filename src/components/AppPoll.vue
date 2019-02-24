@@ -1,6 +1,9 @@
 <template>
     <div v-if="isSignedIn" class="container">
-        <div class="male-contestants-poll" v-if="!afterVoting">
+
+        <!-- Male Contestants -->
+
+        <div class="male-contestants-poll" v-if="!afterVoting" v-show="!hasVoted">
             <h1 style="text-align: center;">
                 Vote Remaining: <span style="color: #0066FF;">{{ mVoteCount }}</span>
             </h1>
@@ -35,12 +38,15 @@
         </div>
 
         <!-- Done voting male contestants ?  -->
+
         <div class="mc-vote-done" v-if="mVoteCount < 1" v-show="!afterVoting">
             <h1>Next up: Ms. VetMed Candidates</h1>
             <button @click="afterVoting = true">Next</button>
         </div>
 
-        <div v-if="afterVoting" class="female-contestants-poll">
+        <!-- Female contestants -->
+
+        <div v-if="afterVoting" class="female-contestants-poll"> 
             <h1 style="text-align:center;">
                 Vote Remaining: 
                 <span style="color: #0066FF;">{{ fVoteCount }}</span>
@@ -72,9 +78,20 @@
                 </div>
             </div>
         </div>
-        <!-- Done voting female contestants ? -->
-        <div v-if="fVoteCount < 1">
-            <h1>Thank you for voting Mr. And Ms. VetMed (People's choice) 2019. Share the poll with your friends using the buttons below.</h1>
+
+        <!-- Done voting for contestants ? -->
+
+        <div v-if="fVoteCount < 1" class="thank-you">
+            <h1 style="text-align: center;">Thank you for voting Mr. And Ms. VetMed (People's choice) 2019. Share the poll with your friends using the buttons below.</h1>
+        </div>
+
+        <!-- User tries to cheat but wise man detected that the user has already voted -->
+
+        <div v-show="hasVoted" class="thank-you">
+            <h1 style="text-align: center;">
+                Thank you for voting Mr. And Ms. VetMed (People's choice) 2019.
+                <span style="color: red; display: block;">You have used all your votes</span>
+            </h1>
         </div>
     </div>
 </template>
@@ -201,9 +218,9 @@ export default {
                     dp: null
                 },
             ],
-            voted: [],
-            votes: [],
-            voter: [],
+            voted: [], //on success message
+            votes: [], //votes sent by users
+            voter: [], //current user logged in
         }
     },
     created() {
@@ -222,12 +239,37 @@ export default {
                 this.isSignedIn = true;
                 this.voter = user;
 
+                /*
+                 * Check to see if the user has already  used all their votes 
+                 */
+                db.collection("voters")
+                .where("voterId", "==", user.uid)
+                .get()
+                .then(
+                    querySnapshot => {
+                        
+                        querySnapshot.forEach(doc => {
+                            
+                            if(doc.data().hasVoted) {
+
+                                this.hasVoted = true;
+
+                            }
+
+                        })
+                    }
+                )
+
             } else {
 
                 this.isSignedIn = false;
 
             }
         })
+
+        /*
+         * Get all votes
+         */
 
         db.collection("voters")
         .get()
@@ -236,8 +278,19 @@ export default {
              
                 querySnapshot.forEach(doc => {
                     
-                    
+                    const data = {
 
+                        voteId: doc.id,
+                        voterId: doc.data().voterId,
+                        voterName: doc.data().voterName,
+                        votedForId: doc.data().votedForId,
+                        votedFor: doc.data().votedFor,
+                        hasVoted: doc.data().hasVoted
+
+                    }
+
+                    this.votes.push(data);
+                    
                 })
             }
         )
@@ -273,9 +326,6 @@ export default {
 
                 }
             }
-
-            console.log(voteForId, voteFor);
-            console.log(this.voter.displayName, this.voter.uid);
 
             /*
              * Send data to the cloud firestore  
