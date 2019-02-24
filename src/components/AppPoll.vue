@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div v-if="isSignedIn" class="container">
         <div class="male-contestants-poll" v-if="!afterVoting">
             <h1>Vote Remaining: {{ mVoteCount }}</h1>
             <div v-if="voted.length" class="voted">
@@ -68,6 +68,9 @@
 </template>
 
 <script>
+import firebaseInit from '@/firebase/firebaseInit';
+import firebase from "firebase";
+
 export default {
     name: "poll",
     data() {
@@ -83,6 +86,7 @@ export default {
             mVoteCount: 2,
             fVoteCount: 2,
             afterVoting: false,
+            isSignedIn: false,
             maleContestants: [
                 {
                     id: 1,
@@ -184,6 +188,15 @@ export default {
             ],
             voted: []
         }
+    },
+    created() {
+
+        firebase.auth().onAuthStateChanged(user => {
+
+            if(user) {
+                this.isSignedIn = true;
+            }
+        });
     },
     methods: {
         voteM(e) {
