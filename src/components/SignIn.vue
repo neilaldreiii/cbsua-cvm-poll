@@ -250,14 +250,16 @@ export default {
         },
         getcjm() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Cris John Mendoza")
+            db.collection("votes")
+            .where("voteFor", "==", "Cris John Mendoza")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
+
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
+                        
                     }
                     this.cjm.push(data);
                 })
@@ -266,14 +268,14 @@ export default {
         },
         getlc() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Lorenzo Credo")
+            db.collection("votes")
+            .where("voteFor", "==", "Lorenzo Credo")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.lc.push(data);
                 })
@@ -282,14 +284,14 @@ export default {
         },
         getjvb() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Joshua Velasco Badong")
+            db.collection("votes")
+            .where("voteFor", "==", "Joshua Velasco Badong")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.jvb.push(data);
                 })
@@ -298,14 +300,14 @@ export default {
         },
         getmfb() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Michael Franco Bertumen")
+            db.collection("votes")
+            .where("voteFor", "==", "Michael Franco Bertumen")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.mfb.push(data);
                 })
@@ -314,14 +316,14 @@ export default {
         },
         geteb() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Elmo Barra")
+            db.collection("votes")
+            .where("voteFor", "==", "Elmo Barra")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.eb.push(data);
                 })
@@ -330,14 +332,14 @@ export default {
         },
         getjpr() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "John Paul Reforsado")
+            db.collection("votes")
+            .where("voteFor", "==", "John Paul Reforsado")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.jpr.push(data);
                 })
@@ -346,14 +348,14 @@ export default {
         },
         getjol() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Julius Oliver Llana")
+            db.collection("votes")
+            .where("voteFor", "==", "Julius Oliver Llana")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.jol.push(data);
                 })
@@ -362,14 +364,14 @@ export default {
         },
         getjf() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Jonas Fernandez")
+            db.collection("votes")
+            .where("voteFor", "==", "Jonas Fernandez")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.jf.push(data);
                 })
@@ -378,14 +380,14 @@ export default {
         },
         getdml() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Dan Miguel Legaspi")
+            db.collection("votes")
+            .where("voteFor", "==", "Dan Miguel Legaspi")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.dml.push(data);
                 })
@@ -394,14 +396,14 @@ export default {
         },
         getjp() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Joanna Peralta")
+            db.collection("votes")
+            .where("voteFor", "==", "Joanna Peralta")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.jp.push(data);
                 })
@@ -410,14 +412,14 @@ export default {
         },
         getsp() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Shiela Payno")
+            db.collection("votes")
+            .where("voteFor", "==", "Shiela Payno")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.sp.push(data);
                 })
@@ -426,14 +428,14 @@ export default {
         },
         getaal() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Alyssa Ashley Lumacad")
+            db.collection("votes")
+            .where("voteFor", "==", "Alyssa Ashley Lumacad")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.aal.push(data);
                 })
@@ -442,14 +444,14 @@ export default {
         },
         getmen() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Matea Ela Noche")
+            db.collection("votes")
+            .where("voteFor", "==", "Matea Ela Noche")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.men.push(data);
                 })
@@ -458,14 +460,14 @@ export default {
         },
         getmc() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Merlyn Castelo")
+            db.collection("votes")
+            .where("voteFor", "==", "Merlyn Castelo")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.mc.push(data);
                 })
@@ -474,14 +476,14 @@ export default {
         },
         getjlb() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Joy Laurel Buena")
+            db.collection("votes")
+            .where("voteFor", "==", "Joy Laurel Buena")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.jlb.push(data);
                 })
@@ -490,14 +492,14 @@ export default {
         },
         getad() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Angel Dalanon")
+            db.collection("votes")
+            .where("voteFor", "==", "Angel Dalanon")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.ad.push(data);
                 })
@@ -506,14 +508,14 @@ export default {
         },
         getdch() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Donna Carmela Hapal")
+            db.collection("votes")
+            .where("voteFor", "==", "Donna Carmela Hapal")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.dch.push(data);
                 })
@@ -522,14 +524,14 @@ export default {
         },
         getsa() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Shiena Aguilar")
+            db.collection("votes")
+            .where("voteFor", "==", "Shiena Aguilar")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.sa.push(data);
                 })
@@ -538,14 +540,14 @@ export default {
         },
         getmz() {
 
-            db.collection("voters")
-            .where("votedFor", "==", "Maricar Zoilo")
+            db.collection("votes")
+            .where("voteFor", "==", "Maricar Zoilo")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                     const data = {
                         voterId: doc.data().voterId,
-                        votecount: doc.data().votedFor
+                        votecount: doc.data().voteFor
                     }
                     this.mz.push(data);
                 })
