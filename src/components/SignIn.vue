@@ -491,7 +491,7 @@ export default {
         getad() {
 
             db.collection("voters")
-            .where("votedFor", "==", "Angel Dalaon")
+            .where("votedFor", "==", "Angel Dalanon")
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
