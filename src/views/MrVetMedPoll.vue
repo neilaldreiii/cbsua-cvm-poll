@@ -1,7 +1,7 @@
 <!-- Male Candidates -->
 <template>
     <div class="mr-candidates">
-        <app-alerts></app-alerts>
+        <app-alerts :alerts="alerts"></app-alerts>
         <div class="container" v-if=isLoggedIn>
             <div class="title">
                 <h1>Mr Vet Med (People's Choice) Candidates</h1>
@@ -15,10 +15,10 @@
                         <h1>{{ candidate.name }}</h1>
                     </div>
                     <div class="control">
-                        <div>
+                        <div v-if="!mVoteLeft < 1">
                             <button @click.once="voteM" :value="candidate.id">Vote</button>
                         </div>
-                        <div>
+                        <div v-else>
                             <button disabled class="disabled">Out of vote</button>
                         </div>
                     </div>
@@ -35,6 +35,7 @@ import firebase from "firebase";
 import db from "@/firebase/firebaseInit";
 
 export default {
+
     name: "mrvetmed",
     data() {
         return {
@@ -158,7 +159,7 @@ export default {
                 }
             }
 
-            //add data to the cloud firestore(database)
+            // add data to the cloud firestore(database)
             db.collection("votes")
             .add({
 
@@ -171,7 +172,9 @@ export default {
 
             })
             .then( docRef => {
+
                 this.alerts.push("You voted for " + voteFor);
+                
             })
             .catch( error => 
 
