@@ -47,7 +47,7 @@ export default {
 
             fVoteLeft: 2,
             isLoggedIn: false,
-            hasVoted: false,
+            hasOneVote: false,
             femaleCandidates: [
                 {
                     id: 11,
@@ -130,23 +130,8 @@ export default {
 
                 this.voter = user;
                 this.isLoggedIn = true;
-
-                //check to see if the user has no votes left for female candidates
-                db.collection("votes")
-                .where("voterId", "==", user.uid)
-                .get()
-                .then(querySnapshot => {
-
-                    querySnapshot.forEach(doc => {
-
-                        if(doc.data().voteLeftFemale <= 1) {
-
-                            this.fVoteLeft = 0;
-
-                        }
-
-                    })
-                })
+                this.getVoteCounts();
+                
             } else {
 
                 this.isLoggedIn = false;
@@ -157,60 +142,142 @@ export default {
 
     },
     methods: {
+
+        getVoteCounts() {
+            
+            //check to see if the user has no votes left for male candidates
+            db.collection("votes")
+            .where("voterId", "==", this.voter.uid)
+            .get()
+            .then(querySnapshot => {
+
+                querySnapshot.forEach(doc => {
+
+                    if(doc.data().voteLeftFemale == 0) {
+                        
+                        this.fVoteLeft = doc.data().voteLeftFemale;
+
+                    } else if(doc.data().voteLeftFemale == 1) {
+                        
+                        this.hasOneVote = true;
+                        this.fVoteLeft = doc.data().voteLeftFemale - 1;
+
+                    }
+                })
+            })
+        },
         voteF(e) {
 
             //decrement amount of votes
-            let voteLeft = this.fVoteLeft--;
+            this.fVoteLeft--;
 
-            //select the target candidate and get the id
-            let targetCandidate = e.target.value;
+            if(!this.hasOneVote) {
 
-            //set variable for fetched Iterated details
-            let voteForId = "";
-            let voteFor = "";
-            let category = "";
+                let voteLeft = this.fVoteLeft;
 
-            //call alert everytime the button is clicked
-            //prevents from flooding shit ton of data
-            this.alerts = [];
+                //select the target candidate and get the id
+                let targetCandidate = e.target.value;
 
-            //iterate and get data then store to defined variables earlier
-            for(let f of this.femaleCandidates) {
+                //set variable for fetched Iterated details
+                let voteForId = "";
+                let voteFor = "";
+                let category = "";
 
-                if(f.id == targetCandidate) {
+                //call alert everytime the button is clicked
+                //prevents from flooding shit ton of data
+                this.alerts = [];
 
-                    voteForId = f.id;
-                    voteFor = f.name;
-                    category = f.category;
+                //iterate and get data then store to defined variables earlier
+                for(let f of this.femaleCandidates) {
+
+                    if(f.id == targetCandidate) {
+
+                        voteForId = f.id;
+                        voteFor = f.name;
+                        category = f.category;
+
+                    }
 
                 }
 
+                // start sending data to the cloud firestore
+                db.collection("votes")
+                .add({
+
+                    voterId: this.voter.uid,
+                    voterName: this.voter.displayName,
+                    voteForId: voteForId,
+                    voteFor: voteFor,
+                    category: category,
+                    voteLeftFemale: voteLeft,
+
+                })
+                .then(docRef => {
+
+                    //pop up alert box
+                    this.alerts.push("You voted for " + voteFor);
+
+                })
+                .catch( error => 
+
+                    console.log(error.message)
+
+                )
+
+            } else {
+
+                let voteLeft = this.fVoteLeft - 1;
+                
+                //select the target candidate and get the id
+                let targetCandidate = e.target.value;
+
+                //set variable for fetched Iterated details
+                let voteForId = "";
+                let voteFor = "";
+                let category = "";
+
+                //call alert everytime the button is clicked
+                //prevents from flooding shit ton of data
+                this.alerts = [];
+
+                //iterate and get data then store to defined variables earlier
+                for(let f of this.femaleCandidates) {
+
+                    if(f.id == targetCandidate) {
+
+                        voteForId = f.id;
+                        voteFor = f.name;
+                        category = f.category;
+
+                    }
+
+                }
+
+                // start sending data to the cloud firestore
+                db.collection("votes")
+                .add({
+
+                    voterId: this.voter.uid,
+                    voterName: this.voter.displayName,
+                    voteForId: voteForId,
+                    voteFor: voteFor,
+                    category: category,
+                    voteLeftFemale: voteLeft,
+
+                })
+                .then(docRef => {
+
+                    //pop up alert box
+                    this.alerts.push("You voted for " + voteFor);
+
+                })
+                .catch( error => 
+
+                    console.log(error.message)
+
+                )
+
             }
-
-            //start sending data to the cloud firestore
-            db.collection("votes")
-            .add({
-
-                voterId: this.voter.uid,
-                voterName: this.voter.displayName,
-                voteForId: voteForId,
-                voteFor: voteFor,
-                category: category,
-                voteLeftMale: 0,
-                voteLeftFemale: voteLeft,
-
-            })
-            .then(docRef => {
-
-                //pop up alert box
-                this.alerts.push("You voter for " + voteFor);
-
-            })
-            .catch( error => 
-
-                console.log(error.message)
-
-            )
 
         }
     }

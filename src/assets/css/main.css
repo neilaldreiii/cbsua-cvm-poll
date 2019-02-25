@@ -21,77 +21,62 @@
 .voted p {
     margin: 0;
 }
-/* Contestants */
+/* Candidates */
+.mr-candidates .ms-candidates {
+    position: relative;
+    margin: 24px;
+}
+.mr-candidates .title, .ms-candidates .title{
+    text-align: center;
+    margin: 24px;
+}
 .candidates {
-    width: 90%;
+    width: 80%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-    margin: auto;
+    grid-auto-rows: minmax(auto, auto);
+    grid-gap: 25px;
+    margin: 24px auto;
 }
 .candidate {
     background: #FFF;
     border-radius: 6px;
     box-shadow: 0 0 12px #8b8b8b;
     overflow: hidden;
-    margin: 34px auto;
+    margin: auto;
+}
+.display-picture {
+    height: 425px;
+    width: 375px;
 }
 .display-picture img {
     width: 100%;
     height: 100%;
 }
-.info {
+.candidate-info h1 {
     text-align: center;
+    font-size: 13pt;
 }
 .controls button {
     display: block;
-    margin: 12px auto;
+    margin: 14px auto;
     outline: none;
     border: none;
-    background: #0066FF;
-    padding: 5px 15px;
+    background: #42b883;
+    padding: 5px 25px;
     color: #FFF;
     border-radius: 50px;
     box-shadow: 0 0 8px #ccc;
-    font-size: 18px;
+    font-size: 12pt;
+    transition: background 0.5s;
 }
 .controls button:hover {
     cursor: pointer;
-    background: rgb(0, 84, 209);
+    background: #2f855e;
 }
 .controls button.disabled {
     background: #c0c0c0;
 }
-.mc-vote-done {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    background: rgba(0,0,0,0.7);
-}
-.mc-vote-done h1 {
-    color: #FFF;
-    margin: 0 auto;
-}
-.mc-vote-done button {
-    display: block;
-    margin: 12px auto;
-    outline: none;
-    border: none;
-    background: #0066FF;
-    padding: 5px 15px;
-    color: #FFF;
-    border-radius: 3px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
 /* Top Navigation bar / Sign in */
 .nav-signIn {
     background: #FFF;
