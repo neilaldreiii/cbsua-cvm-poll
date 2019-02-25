@@ -89,7 +89,7 @@
                                 </p>
                                 <p>
                                     <span>Shiela Payno: </span>
-                                    <span>{{ sa.length }}</span>
+                                    <span>{{ sp.length }}</span>
                                 </p>
                                 <p>
                                     <span>Alyssa Ashley Lumacad: </span>
@@ -435,7 +435,7 @@ export default {
                         voterId: doc.data().voterId,
                         votecount: doc.data().votedFor
                     }
-                    this.dml.aal(data);
+                    this.aal.push(data);
                 })
             })
 
