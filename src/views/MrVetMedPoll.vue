@@ -4,17 +4,17 @@
         <app-alerts :alerts="alerts"></app-alerts>
         <div class="container" v-if="isLoggedIn" v-show="!mVoteLeft < 1">
             <div class="title">
-                <h1>Mr Vet Med (People's Choice) Candidates</h1>
+                <h1>Mr. VetMed (People's Choice) Candidates</h1>
             </div>
             <div class="candidates">
                 <div class="candidate" v-for="candidate in maleCandidates" :key="candidate.id">
                     <div class="display-picture">
                         <img :src="candidate.dp" :alt="candidate.name">
                     </div>
-                    <div class="candidate-i">
+                    <div class="candidate-info">
                         <h1>{{ candidate.name }}</h1>
                     </div>
-                    <div class="control">
+                    <div class="controls">
                         <div v-if="!mVoteLeft < 1">
                             <button @click.once="voteM" :value="candidate.id">Vote</button>
                         </div>
@@ -115,7 +115,7 @@ export default {
         "app-alerts": Alerts
 
     },
-    created() {
+    beforeCreate() {
         
         //get user info and set the user as -> voter
         firebase.auth()
@@ -126,15 +126,13 @@ export default {
                 this.voter = user;
                 this.isLoggedIn = true;
 
-                //check to see if the user has no votes left
+                //check to see if the user has no votes left for male candidates
                 db.collection("votes")
                 .where("voterId", "==", user.uid)
                 .get()
                 .then( querySnapshot => {
 
                     querySnapshot.forEach( doc => {
-
-                        console.log("Votes Left: ", doc.data().voteLeftMale)
 
                         if(doc.data().voteLeftMale <= 1) {
 
@@ -160,7 +158,6 @@ export default {
             
             //decrement number of votes
             let voteLeft = this.mVoteLeft--;
-            console.log(voteLeft);
             
             //select the target candidate and get the id
             let targetCandidate = e.target.value;
@@ -170,7 +167,8 @@ export default {
             let voteFor = "";
             let category = "";
 
-            //show an alert if a user has voted for a candidate
+            //call alert everytime the button is clicked
+            //prevents from flooding shit ton of data
             this.alerts = [];
 
             //iterate and get data then store to data base
@@ -201,6 +199,7 @@ export default {
             })
             .then( docRef => {
 
+                //show an alert if a user has voted for a candidate
                 this.alerts.push("You voted for " + voteFor);
 
             })
@@ -215,7 +214,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>
