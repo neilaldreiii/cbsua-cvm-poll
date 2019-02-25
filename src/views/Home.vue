@@ -1,5 +1,13 @@
 <template>
     <div class="home">
+      <app-signin></app-signin>
+      <div class="banner">
+        <div class="title">
+          <h1>Mr. and Ms. Veterinary Medicine 2019</h1>
+          <p>4:00pm February 28, 2019 @SM Naga</p>
+          <router-link to="/mrvetmedpoll">Vote Now</router-link>
+        </div>
+      </div>
       <div class="rules">
         <h1>Rules</h1>
         <ul>
@@ -19,20 +27,20 @@
             Mr. and Ms. VetMed poll will end on <b>February 28, 2019 @12pm</b>
           </li>
         </ul>
-        <div class="controls">
-          <router-link to="/mrvetmedpoll">Accept rules and start voting</router-link>
-        </div>
       </div>
+      <app-footer class="app-footer"></app-footer>
     </div>
 </template>
 
 <script>
-import Poll from "@/components/AppPoll.vue";
+import SignIn from "@/components/SignIn";
+import AppFooter from "@/components/AppFooter.vue";
 
 export default {
   name: "home",
   components: {
-    "app-poll": Poll,
+    "app-signin": SignIn,
+    "app-footer": AppFooter
   }
 };
 </script>

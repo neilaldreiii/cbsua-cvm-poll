@@ -2,7 +2,7 @@
     <div class="nav-signIn">
         <div v-if="!isSignedIn" class="nav-intro">
             <div class="short-intro">
-                <h1>Welcome to CBSUA CVM Poll.</h1>
+                <h1>Welcome to CBSUA College of Veterinary Medicine Poll</h1>
             </div>
             <div class="nav-controls">
                 <h3>To start voting, please log in with your facebook.</h3>

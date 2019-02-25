@@ -1,8 +1,6 @@
 <template>
   <div id="app" v-if="!closed" class="container">
-    <app-signin></app-signin>
     <router-view/>
-    <app-footer class="app-footer"></app-footer>
   </div>
 </template>
 
@@ -13,9 +11,6 @@ require("@/assets/css/main.css");
 
 import firebase from 'firebase';
 
-import SignIn from "@/components/SignIn";
-import AppFooter from "@/components/AppFooter.vue";
-
 export default {
   name: "app",
   data() {
@@ -23,10 +18,6 @@ export default {
       closed: false,
       user: [],
     }
-  },
-  components: {
-    "app-signin": SignIn,
-    "app-footer": AppFooter
   },
   beforeCreate() {
 

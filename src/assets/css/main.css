@@ -21,6 +21,42 @@
 .voted p {
     margin: 0;
 }
+/* Page Banner */
+.banner {
+    width: 70%;
+    height: 725px;
+    margin: 24px auto;
+    background-image: url(../images/Banner.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow:  0 0 12px rgb(177, 176, 176);
+    border-radius: 6px;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+}
+.banner .title {
+    text-align: center;
+    color: #FFF;
+    background: rgba(0,0,0,0.8);
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+}
+.banner .title h1, .banner .title p {
+    margin: 0;
+}
+.banner .title a {
+    display: block;
+    margin: 10px auto;
+    padding: 6px 15px;
+    border-radius: 50px;
+    background: #35495e;
+    color: #FFF;
+    font-size: 12pt;
+}
+
 /* Candidates */
 .mr-candidates .ms-candidates {
     position: relative;
@@ -87,6 +123,9 @@
     margin: 0;
     padding: 0;
     font-size: 14pt;
+}
+.nav-signIn h3 {
+    font-size: 11pt;
 }
 .short-intro {
     display: flex;
@@ -201,17 +240,4 @@ footer {
 }
 .rules ul li{
     margin: 15px 0;
-}
-.rules .controls {
-    margin: 40px;
-    display: flex;
-    flex-flow: row;
-    justify-content: center;
-}
-.rules .controls a {
-    padding: 10px 20px;
-    border-radius: 50px;
-    background: #35495e;
-    color: #FFF;
-    font-size: 14pt;
 }
