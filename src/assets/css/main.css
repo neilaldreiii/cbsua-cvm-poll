@@ -22,7 +22,7 @@
     margin: 0;
 }
 /* Contestants */
-.contestants {
+.contestants, .candidates {
     width: 90%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);

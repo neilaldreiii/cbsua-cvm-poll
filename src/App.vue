@@ -1,7 +1,7 @@
 <template>
   <div id="app" v-if="!closed">
     <app-signin></app-signin>
-    <router-view />
+    <router-view/>
     <div class="description">
       <ul>
         <li style="list-style: none;">
@@ -33,6 +33,7 @@
 require("@/assets/css/default.css");
 require("@/assets/css/main.css");
 
+import firebase from 'firebase';
 
 import SignIn from "@/components/SignIn";
 import AppFooter from "@/components/AppFooter.vue";
@@ -42,16 +43,32 @@ export default {
   data() {
     return {
       closed: false,
+      user: [],
     }
   },
   components: {
     "app-signin": SignIn,
     "app-footer": AppFooter
   },
+  beforeCreate() {
+
+    //get user data and pass to router as a prop
+    firebase.auth().onAuthStateChanged(user => {
+      
+      if(user) {
+        this.user = user;
+      }
+      else {
+        console.log("Disconnected");
+      }
+
+    })
+    
+  },
   created() {
 
     this.isDeadLine();
-    
+
   },
   methods: {
     
