@@ -5,7 +5,7 @@
         <div class="container" v-if="isLoggedIn" v-show="!mVoteLeft < 1">
             <header class="title">
                 <h1>Mr. VetMed (People's Choice) Candidates</h1>
-                {{ mVoteLeft }}
+                <h4>Vote Remaining: {{ mVoteLeft }}</h4>
             </header>
             <div class="candidates">
                 <div class="candidate" v-for="candidate in maleCandidates" :key="candidate.id">

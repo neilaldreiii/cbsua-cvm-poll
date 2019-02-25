@@ -1,6 +1,5 @@
 <template>
     <div class="home">
-      <app-signin></app-signin>
       <div class="banner">
         <div class="title">
           <h1>Mr. and Ms. Veterinary Medicine 2019</h1>
@@ -28,19 +27,11 @@
           </li>
         </ul>
       </div>
-      <app-footer class="app-footer"></app-footer>
     </div>
 </template>
 
 <script>
-import SignIn from "@/components/SignIn";
-import AppFooter from "@/components/AppFooter.vue";
-
 export default {
   name: "home",
-  components: {
-    "app-signin": SignIn,
-    "app-footer": AppFooter
-  }
 };
 </script>

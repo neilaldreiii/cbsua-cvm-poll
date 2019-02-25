@@ -5,6 +5,7 @@
         <div class="container" v-if="isLoggedIn" v-show="!fVoteLeft < 1">
             <div class="title">
                 <h1>Ms. VetMed (People's Choice) Candidates</h1>
+                <h4>Vote Remaining: {{ fVoteLeft }}</h4>
             </div>
             <div class="candidates">
                 <div class="candidate" v-for="candidate in femaleCandidates" :key="candidate.id">

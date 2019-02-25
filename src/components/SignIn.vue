@@ -5,7 +5,7 @@
                 <h1>Welcome to CBSUA College of Veterinary Medicine Poll</h1>
             </div>
             <div class="nav-controls">
-                <h3>To start voting, please log in with your facebook.</h3>
+                <h3>Please log in with your facebook account to start voting.</h3>
                 <button @click="fbSignIn">
                     <span><i class="fab fa-facebook-f"></i></span>
                     Sign In with Facebook

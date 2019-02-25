@@ -1,15 +1,23 @@
 <template>
   <div id="app" v-if="!closed" class="container">
-    <router-view/>
+    <app-signin></app-signin>
+      <div style="color: tomato; text-align:center; ">
+        <h3>*Notice*</h3>
+        <p>This app is still in development, please view this on desktop.</p>
+        <p>Sorry for the inconvenience.</p>
+      </div>
+      <router-view/>
+    <app-footer class="app-footer"></app-footer>
   </div>
 </template>
 
 <script>
-
 require("@/assets/css/default.css");
 require("@/assets/css/main.css");
 
 import firebase from 'firebase';
+import SignIn from "@/components/SignIn";
+import AppFooter from "@/components/AppFooter.vue";
 
 export default {
   name: "app",
@@ -18,6 +26,10 @@ export default {
       closed: false,
       user: [],
     }
+  },
+  components: {
+    "app-signin": SignIn,
+    "app-footer": AppFooter
   },
   beforeCreate() {
 
