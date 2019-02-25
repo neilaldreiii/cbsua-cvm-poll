@@ -12,9 +12,6 @@
 export default {
     name: "alerts",
     props: ['alerts'],
-    created() {
-        console.log(this.alerts);
-    }
 }
 </script>
 

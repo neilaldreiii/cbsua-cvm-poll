@@ -2,7 +2,7 @@
 <template>
     <div class="mr-candidates">
         <app-alerts :alerts="alerts"></app-alerts>
-        <div class="container" v-if=isLoggedIn>
+        <div class="container" v-if="isLoggedIn" v-show="!mVoteLeft < 1">
             <div class="title">
                 <h1>Mr Vet Med (People's Choice) Candidates</h1>
             </div>
@@ -25,10 +25,16 @@
                 </div>
             </div>
         </div>
+        <div v-if="mVoteLeft < 1" class="next-step">
+            <p>Thank you for Voting. </p>
+            <p>Click <b>"Next"</b> to vote for Ms. VetMed Candidates</p>
+            <router-link to="msvetmedpoll">Next</router-link>
+        </div>
     </div>
 </template>
 
 <script>
+
 //get the alert block
 import Alerts from "@/components/Alerts.vue";
 import firebase from "firebase";
@@ -42,6 +48,7 @@ export default {
 
             mVoteLeft: 2,
             isLoggedIn: false,
+            hasVoted: false,
             maleCandidates: [
                 {
                     id: 1,
@@ -110,6 +117,7 @@ export default {
     },
     created() {
         
+        //get user info and set the user as -> voter
         firebase.auth()
         .onAuthStateChanged(user => {
 
@@ -118,6 +126,25 @@ export default {
                 this.voter = user;
                 this.isLoggedIn = true;
 
+                //check to see if the user has no votes left
+                db.collection("votes")
+                .where("voterId", "==", user.uid)
+                .get()
+                .then( querySnapshot => {
+
+                    querySnapshot.forEach( doc => {
+
+                        console.log("Votes Left: ", doc.data().voteLeftMale)
+
+                        if(doc.data().voteLeftMale <= 1) {
+
+                            this.mVoteLeft = 0;
+
+                        }
+                    })
+
+                })
+
             }
             else {
                 
@@ -125,7 +152,6 @@ export default {
 
             }
         })
-        
 
     },
     methods: {
@@ -168,13 +194,15 @@ export default {
                 voteForId: voteForId,
                 voteFor: voteFor,
                 category: category,
-                mVoteLeft: voteLeft
+                voteLeftMale: voteLeft,
+                voteLeftFemale: 2
+                
 
             })
             .then( docRef => {
 
                 this.alerts.push("You voted for " + voteFor);
-                
+
             })
             .catch( error => 
 
