@@ -4,7 +4,7 @@
         <!-- Male Contestants -->
 
         <div class="male-contestants-poll" v-if="!afterVoting" v-show="!hasVoted">
-            <h1 style="text-align: center;">
+            <h1 style="text-align: center; font-size: 17pt;">
                 Vote Remaining: <span style="color: #0066FF;">{{ mVoteCount }}</span>
             </h1>
             <div v-if="voted.length" class="voted">
@@ -58,10 +58,10 @@
                     </li>
                 </ul>
             </div>
+            <h1 style="text-align:center;">
+                Ms. VetMed(People's Choice)
+            </h1>
             <div v-if="!fVoteCount < 1" class="contestants">
-                <h1 style="text-align:center;">
-                    Ms. VetMed(People's Choice)
-                </h1>
                 <div class="contestant" v-for="fc in femaleContestants" :key="fc.id">
                     <div class="display-picture"></div>
                     <div class="info">
