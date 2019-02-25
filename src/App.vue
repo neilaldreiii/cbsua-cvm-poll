@@ -1,8 +1,8 @@
 <template>
-  <div id="app" v-if="!closed">
+  <div id="app" v-if="!closed" class="container">
     <app-signin></app-signin>
     <router-view/>
-    <app-footer></app-footer>
+    <app-footer class="app-footer"></app-footer>
   </div>
 </template>
 
@@ -69,3 +69,16 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.container {
+  height: 100vh;
+  position: relative;
+}
+.app-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+</style>
