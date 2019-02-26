@@ -14,7 +14,8 @@
         </div>
         <div v-else class="nav-intro">
             <div class="short-intro">
-                <h1>Welcome {{ displayName }}</h1>
+                <h1>Welcome {{ user.displayName }} </h1>
+                <img :src="user.photoURL" :alt="user.displayName" class="user-photo-url">
             </div>
             <div class="nav-controls">
                 <button @click="fbSignOut">
@@ -142,7 +143,7 @@ export default {
         return {
 
             isSignedIn: false,
-            displayName: null,
+            user: [],
             admin: false,
             isAdmin: false,
             cjm: [],
@@ -171,7 +172,7 @@ export default {
         firebase.auth().onAuthStateChanged(user => {
             if(user) {
 
-                this.displayName = user.displayName;
+                this.user = user;
                 this.isSignedIn = true;
                 
                 if (user.uid == "kHsW28iNsEWvchwklvEGYY9xArv2" || 
@@ -186,8 +187,6 @@ export default {
                 }
                 
             } else {
-
-                console.log("Signed out");
                 this.isSignedIn = false;
 
             }

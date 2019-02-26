@@ -1,11 +1,6 @@
 <template>
   <div id="app" v-if="!closed" class="container">
     <app-signin></app-signin>
-      <div style="color: tomato; text-align:center; ">
-        <h3>*Notice*</h3>
-        <p>This app is still in development, please view this on desktop.</p>
-        <p>Sorry for the inconvenience.</p>
-      </div>
       <router-view/>
     <app-footer class="app-footer"></app-footer>
   </div>

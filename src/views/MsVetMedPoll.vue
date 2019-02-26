@@ -26,6 +26,10 @@
                 </div>
             </div>
         </div>
+        <div v-if="fVoteLeft < 1" class="vote-done">
+            <h1>Thank you for Voting.</h1>
+            <router-link to="/" class="next">Home</router-link>
+        </div>
     </div>
 </template>
 

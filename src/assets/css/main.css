@@ -47,7 +47,14 @@
     color: #FFF;
     font-size: 12pt;
 }
-
+.next {
+    margin: 10px auto;
+    padding: 6px 15px;
+    border-radius: 50px;
+    background: #35495e;
+    color: #FFF;
+    font-size: 12pt;
+}
 /* Candidates */
 .mr-candidates .ms-candidates {
     position: relative;
@@ -111,17 +118,23 @@
     box-shadow: 0 0 12px #ccc;
 }
 .nav-signIn h1 {
-    margin: 0;
-    padding: 0;
+    margin: auto;
     font-size: 14pt;
+    display: inline-block;
 }
 .nav-signIn h3 {
     font-size: 11pt;
 }
 .short-intro {
     display: flex;
-    flex-flow: column;
-    justify-content: center;
+    flex-flow: row;
+}
+.short-intro img{
+    display: inline-block;
+    height: 31px;
+    width: 31px;
+    border-radius: 50%;
+    margin: auto 10px;
 }
 .nav-signIn .nav-intro {
     width: 80%;
@@ -129,9 +142,6 @@
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-}
-.nav-signIn h1 {
-    margin: auto;
 }
 .nav-controls {
     display: flex;
