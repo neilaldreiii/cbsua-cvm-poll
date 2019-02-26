@@ -5,6 +5,7 @@ import MrVetMed from "./views/MrVetMedPoll.vue";
 import MsVetMed from "./views/MsVetMedPoll.vue";
 import Privacy from "./views/Privacy.vue";
 import Terms from "./views/Terms.vue";
+import Done from "./views/VoteDone.vue";
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: "/msvetmedpoll",
       name: "msvetmed",
       component: MsVetMed,
+    },
+    {
+      path: "/done",
+      name: "done",
+      component: Done
     }
   ],
   mode: "history"

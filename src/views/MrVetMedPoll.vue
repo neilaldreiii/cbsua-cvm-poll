@@ -27,7 +27,7 @@
             </div>
         </div>
         <div v-if="mVoteLeft < 1" class="next-step">
-            <p>Thank you for Voting. </p>
+            <h1>Thank you for Voting. </h1>
             <p>Click <b>"Next"</b> to vote for Ms. VetMed Candidates</p>
             <router-link to="msvetmedpoll">Next</router-link>
         </div>
@@ -150,6 +150,8 @@ export default {
                     if(doc.data().voteLeftMale == 0) {
                         
                         this.mVoteLeft = doc.data().voteLeftMale;
+                        //redirect if theres no vote left
+                        this.$router.push("/done");
 
                     } else if(doc.data().voteLeftMale == 1) {
                         

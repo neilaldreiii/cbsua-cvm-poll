@@ -26,10 +26,6 @@
                 </div>
             </div>
         </div>
-        <div v-if="fVoteLeft < 1" class="next-step">
-            <p>Thank you for voting.</p>
-            <router-link to="/">Home</router-link>
-        </div>
     </div>
 </template>
 
@@ -121,7 +117,7 @@ export default {
         "app-alerts": Alerts
 
     },
-    beforeCreate() {
+    created() {
 
         //get user info and set the user as -> voter
         firebase.auth()
@@ -133,10 +129,11 @@ export default {
                 this.isLoggedIn = true;
                 this.getVoteCounts();
                 
+                
             } else {
 
                 this.isLoggedIn = false;
-
+                this.$router.push("/done");
             }
 
         })
@@ -157,6 +154,7 @@ export default {
                     if(doc.data().voteLeftFemale == 0) {
                         
                         this.fVoteLeft = doc.data().voteLeftFemale;
+                        this.$router.push("/done");
 
                     } else if(doc.data().voteLeftFemale == 1) {
                         

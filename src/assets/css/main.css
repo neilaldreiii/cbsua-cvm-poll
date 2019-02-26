@@ -12,15 +12,6 @@
     box-shadow: 0 0 12px #ccc;
     z-index: 1;
 }
-.voted ul {
-    list-style: none;
-    font-size: 12pt;
-    margin: 0;
-    padding: 0;
-}
-.voted p {
-    margin: 0;
-}
 /* Page Banner */
 .banner {
     width: 70%;
@@ -165,9 +156,10 @@
 /* Footer */
 footer {
     padding: 20px;
-    margin: auto;
+    margin: 24px auto;
     margin-bottom: 0;
     background: #FFF;
+    box-shadow: 0 0 12px #ccc;
     display: flex;
     flex-flow: row;
     justify-content: space-evenly;
@@ -229,7 +221,6 @@ footer {
 .results .status {
     text-align: center;
 }
-
 /* Rules */
 .rules {
     width: 70%;
@@ -240,4 +231,27 @@ footer {
 }
 .rules ul li{
     margin: 15px 0;
+}
+
+/* Thank you message */
+.vote-done {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+.vote-done button {
+    display: block;
+    margin: 24px auto;
+    outline: none;
+    border: none;
+    background: #3C5A99;
+    border-radius: 50px;
+    padding: 6px 15px;
+    color: #FFF;
+    font-size: 13pt;
+    transition: background 0.5s;
+}
+.vote-done button:hover {
+    cursor: pointer;
+    background: rgb(53, 71, 112);
 }
